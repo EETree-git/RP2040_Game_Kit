@@ -11,3 +11,5 @@ thonny官方下载网址:https://thonny.org/
 micropython官方文档(英文):https://docs.micropython.org/en/latest/index.html
 
 micropython官方文档(中文):http://micropython.circuitpython.com.cn/en/latet/index.html
+
+电子森林pico资料百科网址:https://www.eetree.cn/wiki/pico_micropython
