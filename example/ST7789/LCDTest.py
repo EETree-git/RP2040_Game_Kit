@@ -17,7 +17,7 @@ CENTER_X = int(disp_height/2)
 print(uos.uname())
 spi_sck=machine.Pin(2)
 spi_tx=machine.Pin(3)
-spi0=machine.SPI(0,baudrate=4000000, phase=0, polarity=1, sck=spi_sck, mosi=spi_tx)
+spi0=machine.SPI(0,baudrate=4000000, phase=1, polarity=1, sck=spi_sck, mosi=spi_tx)
 #
 print(spi0)
 display = st7789.ST7789(spi0, disp_width, disp_width,
