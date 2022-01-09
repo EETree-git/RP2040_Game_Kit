@@ -124,6 +124,8 @@ class ST7789():
         self.xstart = xstart
         self.ystart = ystart
 
+        self.spi.write(bytes(0xff))#
+
         self.hard_reset()
         self.soft_reset()
         self.sleep_mode(False)
