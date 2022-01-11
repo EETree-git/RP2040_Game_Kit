@@ -4,10 +4,10 @@ import utime
 xAxis = ADC(Pin(28))
 yAxis = ADC(Pin(29))
 
-buttonB = Pin(25,Pin.IN, Pin.PULL_UP) #B
+buttonB = Pin(5,Pin.IN, Pin.PULL_UP) #B
 buttonA = Pin(6,Pin.IN, Pin.PULL_UP) #A
-buttonStart = Pin(7,Pin.IN, Pin.PULL_UP) #A
-buttonSelect = Pin(8,Pin.IN, Pin.PULL_UP) #A
+buttonStart = Pin(7,Pin.IN, Pin.PULL_UP) 
+buttonSelect = Pin(8,Pin.IN, Pin.PULL_UP) 
 
 while True:
     xValue = xAxis.read_u16()
