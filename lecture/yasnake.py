@@ -67,7 +67,7 @@ class rotary_encoder:
 class hardware():
     def init():
         # screen
-        spi = SPI(0, baudrate=31250000, polarity=1, phase=0,
+        spi = SPI(0, baudrate=31250000, polarity=1, phase=1,
                   sck=Pin(game_kit.lcd_sck, Pin.OUT),
                   mosi=Pin(game_kit.lcd_sda, Pin.OUT))
         tft = st7789c.ST7789(
