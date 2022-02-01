@@ -6,7 +6,7 @@
 import random
 import time
 import uasyncio as asyncio
-from machine import Pin, SPI
+from machine import Pin, SPI, ADC
 
 import st7789c
 import vga2_8x8 as font
@@ -15,6 +15,10 @@ from button import button
 from buzzer_music import music
 
 from board import game_kit
+
+xAxis = ADC(Pin(29))
+yAxis = ADC(Pin(28))
+
 
 class color_cfg:
     black = st7789c.BLACK
@@ -167,6 +171,7 @@ class snake():
     def closing(self):
         self.state = snake.STOP
         setcolor(color_cfg.magenta)
+        print("GAME OVER")
         outtextxy(0, 29, "GAME OVER")
     
     async def blink(self):
@@ -192,25 +197,40 @@ class snake():
 
     def dir_select(self):
         key = self.getch()
+        xValue = xAxis.read_u16()
+        yValue = yAxis.read_u16()
+        director = 0
         
-        if key == "cw":
-            if self.d == snake.RIGHT:
-                self.d = snake.DOWN
-            elif self.d == snake.DOWN:
-                self.d = snake.LEFT
-            elif self.d == snake.LEFT:
-                self.d = snake.UP
-            elif self.d == snake.UP:
-                self.d = snake.RIGHT
-        if key == "ccw":
-            if self.d == snake.RIGHT:
-                self.d = snake.UP
-            elif self.d == snake.UP:
-                self.d = snake.LEFT
-            elif self.d == snake.LEFT:
-                self.d = snake.DOWN
-            elif self.d == snake.DOWN:
-                self.d = snake.RIGHT
+        if xValue <1000:
+            director = snake.LEFT
+        elif xValue >40000:
+            director = snake.RIGHT
+            
+        if yValue <1000:
+            director = snake.UP
+        elif yValue >40000:
+            director = snake.DOWN
+            
+        #debug
+        #print("dir: "+str(director) +", d:"+ str(self.d))
+
+        if director != 0:
+            # up 1   d != down 2
+            # left 3   d!= right 4
+            # right 4   d!= 3
+            # down 2    d!=1
+            if (self.d == self.UP) and  (director != self.DOWN) :
+                self.d = director
+            if (self.d == self.LEFT) and  (director != self.RIGHT):
+                self.d = director
+            if (self.d == self.RIGHT) and  (director != self.LEFT):
+                self.d = director
+            if (self.d == self.DOWN) and  (director != self.UP):
+                self.d = director
+      
+
+
+
 
     def init_run(self):
         self.body = []
