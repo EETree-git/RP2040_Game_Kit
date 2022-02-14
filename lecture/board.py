@@ -13,6 +13,7 @@ class game_kit:
     accelerometer_scl = 11
     accelerometer_sda = 10
     accelerometer_int = 9
+    accelerometer_i2c = 1
 
     # keys (SW3 SW4 SW5 SW6)
     key_b = 5

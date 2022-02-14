@@ -3,11 +3,15 @@
 ## resource-from: https://twitter.com/johndmcmaster
 
 ### 转换图片的方法
-## tjpgd只支持baseline编码的jpeg标准, 所以需要对资源进行转换. 步骤如下:
+## tjpgd只支持baseline编码的jpeg标准, 所以需要对资源进行转换.
+## 通用步骤如下:
 ## 1. 下载imagemagick并安装
 ## 2. 打开命令提示符
 ## 3. 运行`convert rp2040.mp4 -type TrueColor -resize 240x240 rp2040.jpg`
 ## 4. 把转换后的jpg文件上传pico
+## 一些gif每一帧只保存差异信息, 所以需要额外处理, 转换成coalesced gif:
+## `convert rp2040.gif -coalesce -set dispose previous rp2040-coalesced.gif`
+##
 
 import gc
 from machine import Pin, SPI
