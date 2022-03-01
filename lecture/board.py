@@ -3,8 +3,8 @@
 
 class game_kit:
     # joystick FJO8K-N VR1
-    joy_x = 28
-    joy_y = 29
+    joy_x = 29
+    joy_y = 28
 
     # buzzer Buzzer LS1
     buzzer = 23
